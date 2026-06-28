@@ -1,0 +1,156 @@
+/* 기본 스타일 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+    padding-top: 80px; /* 상단 헤더 공간 */
+}
+
+/* ------------------------------------- */
+/* 글로벌 헤더 (상단 프로필) */
+/* ------------------------------------- */
+.global-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.user-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.user-menu img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 150px;
+    display: none;
+    z-index: 1001;
+}
+
+.dropdown-menu.show { display: block; }
+
+.dropdown-menu a {
+    display: block;
+    padding: 12px 15px;
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background-color: #f8f9fa; }
+
+/* ------------------------------------- */
+/* 공용 컨테이너 */
+/* ------------------------------------- */
+.login-container, .signup-container, .write-container, .post-detail-container, .board-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+
+.login-container, .signup-container { max-width: 400px; }
+.write-container { max-width: 700px; }
+.post-detail-container, .board-container { max-width: 800px; margin: auto; }
+
+/* ------------------------------------- */
+/* 입력 요소 & 버튼 */
+/* ------------------------------------- */
+.input-group { margin-bottom: 20px; text-align: left; }
+.input-group label { display: block; margin-bottom: 8px; color: #555; font-weight: 500; }
+.input-group input, .input-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; transition: border-color 0.3s; font-family: inherit; }
+.input-group input:focus, .input-group textarea:focus { border-color: #007bff; outline: none; }
+
+.button-group { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+button { width: 100%; padding: 12px; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; font-weight: bold; transition: background-color 0.3s, transform 0.1s; }
+
+.btn-login { background-color: #007bff; color: white; }
+.btn-signup { background-color: #e9ecef; color: #495057; }
+
+/* ------------------------------------- */
+/* 게시판 목록 (Board) */
+/* ------------------------------------- */
+.board-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #f1f3f5; }
+.board-header h1 { font-size: 24px; color: #333; }
+.btn-write { background-color: #28a745; color: white; width: auto; padding: 10px 20px; }
+
+.post-list { display: flex; flex-direction: column; gap: 15px; }
+.post-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border: 1px solid #e9ecef; border-radius: 6px; background-color: #fff; cursor: pointer; }
+.post-content { flex: 1; text-align: left; padding-right: 20px; }
+.post-title { font-size: 18px; margin-bottom: 8px; color: #333; }
+.post-meta { font-size: 13px; color: #6c757d; display: flex; gap: 15px; }
+.post-author { display: flex; flex-direction: column; align-items: center; min-width: 80px; }
+.post-author img { width: 36px; height: 36px; border-radius: 50%; margin-bottom: 5px; }
+.post-author span { font-size: 12px; color: #666; }
+
+/* ------------------------------------- */
+/* 게시글 상세 (Post Detail) */
+/* ------------------------------------- */
+.post-detail-header { border-bottom: 1px solid #e9ecef; padding-bottom: 20px; margin-bottom: 20px; text-align: left; }
+.post-detail-title { font-size: 28px; margin-bottom: 15px; }
+.author-info { display: flex; align-items: center; margin-bottom: 15px; }
+.author-info img { width: 40px; height: 40px; border-radius: 50%; margin-right: 12px; }
+.author-meta { display: flex; flex-direction: column; text-align: left; }
+.post-actions { display: flex; gap: 10px; }
+.post-actions button { width: auto; padding: 6px 12px; font-size: 14px; }
+.btn-edit { background-color: #ffc107; color: #212529; }
+.btn-delete { background-color: #dc3545; color: white; }
+
+.post-detail-content { text-align: left; line-height: 1.6; min-height: 150px; }
+.post-detail-footer { border-top: 1px solid #e9ecef; margin-top: 30px; padding-top: 15px; }
+.post-stats { display: flex; gap: 20px; color: #6c757d; font-size: 14px; align-items: center; }
+
+.btn-like { background: none; border: none; width: auto; cursor: pointer; color: #6c757d; display: flex; align-items: center; gap: 5px; font-size: 16px; }
+.btn-like.active { color: #dc3545; }
+
+/* 댓글 섹션 */
+.comments-container { margin-top: 30px; border-top: 1px solid #e9ecef; padding-top: 20px; text-align: left; }
+.comment-form { display: flex; gap: 10px; margin-bottom: 30px; }
+.comment-form textarea { flex: 1; min-height: 60px; }
+.comment-form .btn-comment-submit { width: auto; background-color: #007bff; color: white; padding: 0 20px; }
+
+.comment-list { display: flex; flex-direction: column; gap: 20px; }
+.comment-item { display: flex; gap: 15px; }
+.comment-author { display: flex; flex-direction: column; align-items: center; min-width: 60px; }
+.comment-author img { width: 35px; height: 35px; border-radius: 50%; margin-bottom: 5px; }
+.comment-content { flex: 1; text-align: left; }
+.comment-actions { display: flex; gap: 8px; }
+.comment-actions button { width: auto; padding: 4px 8px; font-size: 12px; background: none; border: 1px solid #dee2e6; }

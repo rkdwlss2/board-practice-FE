@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 수정</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <div class="write-container">
+        <header class="write-header">
+            <button class="btn-back" onclick="history.back()">
+                <i class="fa-solid fa-chevron-left"></i> 뒤로가기
+            </button>
+            <h2>게시글 수정</h2>
+            <div style="width: 80px;"></div> <!-- 정렬용 여백 -->
+        </header>
+
+        <form id="edit-form">
+            <div class="input-group">
+                <label for="post-title">제목</label>
+                <input type="text" id="post-title" name="post-title" required placeholder="제목을 입력하세요">
+            </div>
+            <div class="input-group">
+                <label for="post-content">내용</label>
+                <textarea id="post-content" name="post-content" rows="10" required placeholder="내용을 입력하세요"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="post-image">이미지 수정 (선택)</label>
+                <input type="file" id="post-image" name="post-image" accept="image/*">
+                <div id="current-image-info" style="margin-top: 10px; font-size: 14px; color: #666;"></div>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="btn-login" id="submit-edit-btn">수정하기</button>
+            </div>
+        </form>
+    </div>
+    <script src="edit.js"></script>
+</body>
+</html>
