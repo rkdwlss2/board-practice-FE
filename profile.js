@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const profileEditForm = document.getElementById('profile-edit-form');
     if (profileEditForm) {
         // 초기 데이터 로드 (예시)
-        fetch('http://localhost:8080/user/me',{
+        fetch('http://localhost:8080/users/me',{
             method: 'GET',
             credentials: 'include'
         })
@@ -64,9 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 })
                 .catch(err => console.error('수정 요청 에러:', err));
-
-            alert('수정이 완료되었습니다.');
-            history.back(); 
         });
 
         // 회원탈퇴 버튼

@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 1. 게시글 상세 정보 조회
-    fetch(`http://localhost:8080/boards/posts/${postId}`, { method: 'GET' })
+    fetch(`http://localhost:8080/boards/posts/${postId}`, { method: 'GET'
+    ,credentials: 'include'
+    })
         .then(async (response) => {
             if (!response.ok) {
                 const errorData = await response.json();
@@ -26,6 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 헤더 업데이트 (제목, 작성자, 수정/삭제 버튼)
                 const postDetailHeader = document.querySelector('.post-detail-header');
                 if (postDetailHeader) {
+                    let buttonHtml = ``;
+
+                    if (data.owner){
+                        buttonHtml =
+                            `<div class="post-actions">
+                            <button class="btn-edit">수정</button>
+                            <button class="btn-delete">삭제</button>
+                        </div>
+                    `;
+                    }
                     postDetailHeader.innerHTML = `
                         <h2 class="post-detail-title">${post.title}</h2>
                         <div class="author-info">
@@ -34,12 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span class="author-name">${post.writer}</span>
                                 <span class="post-timestamp">${post.createDate}</span>
                             </div>
-                        </div>
-                        <div class="post-actions">
-                            <button class="btn-edit">수정</button>
-                            <button class="btn-delete">삭제</button>
-                        </div>
-                    `;
+                        </div>`+buttonHtml;
+
+
                 }
 
                 // 본문 업데이트
@@ -140,7 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // B. 게시글 삭제 버튼
         if (e.target.classList.contains('btn-delete')) {
             if (confirm('게시글을 삭제하시겠습니까?')) {
-                fetch(`http://localhost:8080/boards/posts/${postId}`, { method: 'DELETE' })
+                fetch(`http://localhost:8080/boards/posts/${postId}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                })
                     .then(res => { if(res.ok) window.location.href = 'board.html'; });
             }
         }
@@ -179,7 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const commentId = commentItem.dataset.id;
 
                     fetch(`http://localhost:8080/boards/posts/comment/${commentId}`, {
-                        method: 'DELETE'
+                        method: 'DELETE',
+                        credentials: 'include'
                     })
                         .then(async (response) => {
                             if (response.status === 401) {
