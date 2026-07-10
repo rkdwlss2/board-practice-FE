@@ -33,11 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         return;
                     }
-                    return response.json();
+                    return response;
                 })
                 .then(data => {
                     if (data) {
                         console.log("로그인 성공:", data);
+                        // var responseHeader = data.headers.get('authorization');
+
                         window.location.href = 'board.html'; // 로그인 성공 시 게시판으로 이동
                     }
                 })
