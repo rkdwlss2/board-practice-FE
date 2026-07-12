@@ -76,6 +76,34 @@ body {
 .dropdown-menu a:last-child { border-bottom: none; }
 .dropdown-menu a:hover { background-color: #f8f9fa; }
 
+.darkmode_btn {
+    border-radius: 15px;
+    box-shadow: 0.5px 0.5px 2px 1px #eee;
+    padding: 15px;
+    background-color: #282828;
+    color: white;
+    margin-left: 10px;
+    margin-top: 5px;
+    border: none;
+  }
+
+body.dark {
+    background-color: #181818;
+    color: white;
+}
+
+body.dark .board-container,
+body.dark .global-header,
+body.dark .post-item {
+    background-color: #282828;
+    color: white;
+}
+
+body.dark .post-title,
+body.dark .board-header h1,
+body.dark .post-author span {
+    color: white;
+}
 /* ------------------------------------- */
 /* 공용 컨테이너 */
 /* ------------------------------------- */
