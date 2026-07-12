@@ -3,6 +3,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const signupBtn = document.getElementById('signup-btn');
 
+    const signInBtn = document.getElementById("signIn");
+    const signUpBtn = document.getElementById("signUp");
+    const fistForm = document.getElementById("signup-form");
+    const secondForm = document.getElementById("login-form");
+    const container = document.querySelector(".container");
+
+    signInBtn.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+    });
+
+    signUpBtn.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+    });
+
+    fistForm.addEventListener("submit", (e) => e.preventDefault());
+    secondForm.addEventListener("submit", (e) => e.preventDefault());
+
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -14,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 credentials: 'include',
                 body: JSON.stringify({ // 자바스크립트 객체 JSON 변환
-                    email: document.getElementById('email').value,
-                    password: document.getElementById('password').value
+                    email: document.getElementById('login-email').value,
+                    password: document.getElementById('login-password').value
                 })
             })
                 .then(async (response) => {

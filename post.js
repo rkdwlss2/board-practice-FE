@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
 
+
     if (!postId) {
         alert('잘못된 접근입니다.');
         window.location.href = 'board.html';
