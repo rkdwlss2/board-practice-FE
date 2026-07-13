@@ -107,6 +107,34 @@ body {
 .dropdown-menu a:last-child { border-bottom: none; }
 .dropdown-menu a:hover { background-color: #f8f9fa; }
 
+.darkmode_btn {
+    border-radius: 15px;
+    box-shadow: 0.5px 0.5px 2px 1px #eee;
+    padding: 15px;
+    background-color: #282828;
+    color: white;
+    margin-left: 10px;
+    margin-top: 5px;
+    border: none;
+  }
+
+body.dark {
+    background-color: #181818;
+    color: white;
+}
+
+body.dark .board-container,
+body.dark .global-header,
+body.dark .post-item {
+    background-color: #282828;
+    color: white;
+}
+
+body.dark .post-title,
+body.dark .board-header h1,
+body.dark .post-author span {
+    color: white;
+}
 /* ------------------------------------- */
 /* 공용 컨테이너 */
 /* ------------------------------------- */
@@ -144,11 +172,45 @@ button { width: 100%; padding: 12px; border: none; border-radius: 4px; font-size
 .btn-write { background-color: #28a745; color: white; width: auto; padding: 10px 20px; }
 
 .post-list { display: flex; flex-direction: column; gap: 15px; }
-.post-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border: 1px solid #e9ecef; border-radius: 6px; background-color: #fff; cursor: pointer; }
+.post-item {
+    display: grid; /* Flex 대신 Grid 활용 */
+    grid-template-columns: 1fr auto; /* 내용 영역과 작성자 영역 분리 */
+    gap: 15px;
+    padding: 20px; /* 패딩 증가 */
+    border: none; /* 테두리 제거 */
+    border-radius: 12px; /* 더 둥근 모서리 */
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* 더 부드럽고 깊은 그림자 */
+    transition: all 0.2s ease-in-out; /* 모든 변화에 부드러운 전환 */
+    cursor: pointer;
+}
+.post-item:hover {
+    transform: translateY(-8px); /* 더 드라마틱한 호버 효과 */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* 호버 시 그림자 강조 */
+}
+
 .post-content { flex: 1; text-align: left; padding-right: 20px; }
-.post-title { font-size: 18px; margin-bottom: 8px; color: #333; }
-.post-meta { font-size: 13px; color: #6c757d; display: flex; gap: 15px; }
-.post-author { display: flex; flex-direction: column; align-items: center; min-width: 80px; }
+.post-title {
+    font-family: 'Poppins', sans-serif; /* 새로운 폰트 적용 */
+    font-weight: 600; /* 더 두껍게 */
+    font-size: 20px;
+    color: #212529;
+}
+.post-meta {
+    font-size: 14px;
+    color: #868e96;
+    gap: 10px;
+}
+.post-author {
+    /* grid-column: 2; */ /* Grid 영역 명시 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 세로 중앙 정렬 */
+    min-width: 80px;
+    padding-left: 15px; /* 내용과의 간격 */
+    border-left: 1px solid #f1f3f5; /* 구분선 추가 */
+}
 .post-author img { width: 36px; height: 36px; border-radius: 50%; margin-bottom: 5px; }
 .post-author span { font-size: 12px; color: #666; }
 
