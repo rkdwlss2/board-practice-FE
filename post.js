@@ -3,6 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
 
+    // 1. 드롭다운 토글 기능 (모든 페이지 상단 프로필 클릭 시)
+    const userMenu = document.querySelector('.user-menu');
+    if (userMenu) {
+        userMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const dropdown = userMenu.querySelector('.dropdown-menu');
+            dropdown.classList.toggle('show');
+        });
+    }
+
     if (!postId) {
         alert('잘못된 접근입니다.');
         window.location.href = 'board.html';
