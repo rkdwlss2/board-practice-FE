@@ -2,66 +2,11 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
-    <link rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시판</title>
 </head>
 <body>
-<!--<div class="animated-bg"></div>-->
-
-<!--    <div class="login-container">-->
-<!--        <h2>로그인</h2>-->
-<!--        <form id="login-form">-->
-<!--            <div class="input-group">-->
-<!--                <label for="email">이메일</label>-->
-<!--                <input type="text" id="email" name="email" required placeholder="이메일을 입력하세요">-->
-<!--            </div>-->
-<!--            <div class="input-group">-->
-<!--                <label for="password">비밀번호</label>-->
-<!--                <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">-->
-<!--            </div>-->
-<!--            <div class="button-group">-->
-<!--                <button type="submit" class="btn-login" id="login-btn">로그인</button>-->
-<!--                <button type="button" class="btn-signup" id="signup-btn">회원가입</button>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
-    <div class="container right-panel-active">
-        <!-- Sign Up -->
-        <div class="container__form container--signup">
-            <form action="#" class="form" id="signup-form">
-                <h2 class="form__title">회원가입</h2>
-                <input type="text" id="nickname" placeholder="닉네임" class="input" />
-                <input type="email" id="email" placeholder="이메일을 입력하세요" required class="input" />
-                <input type="password" id="password" placeholder="비밀번호를 입력하세요" class="input" />
-                <input type="password" id="password-confirm" placeholder="비밀번호 확인 입력하세요" class="input" />
-                <button class="btn">회원가입</button>
-            </form>
-        </div>
-
-        <!-- Sign In -->
-        <div class="container__form container--signin">
-            <form action="#" class="form" id="login-form">
-                <h2 class="form__title">로그인</h2>
-                <input type="email" id="login-email" placeholder="이메일을 입력하세요" required class="input" />
-                <input type="password" id="login-password" placeholder="비밀번호를 입력하세요" required class="input" />
-                <button class="btn">로그인</button>
-            </form>
-        </div>
-
-        <!-- Overlay -->
-        <div class="container__overlay">
-            <div class="overlay">
-                <div class="overlay__panel overlay--left">
-                    <button class="btn" id="signIn">로그인</button>
-                </div>
-                <div class="overlay__panel overlay--right">
-                    <button class="btn" id="signUp">회원가입</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="login.js"></script>
-    <script src="signup.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
