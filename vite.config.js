@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, "index.html"),
         board: resolve(import.meta.dirname, "board.html"),
+        post: resolve(import.meta.dirname, "post.html"),
       },
     },
   },

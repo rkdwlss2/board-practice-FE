@@ -49,6 +49,21 @@
   height: 1px;
 }
 
+.post-detail-content img {
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+.page-status {
+  margin: 80px auto 0;
+  text-align: center;
+}
+
+.comment-timestamp {
+  color: #868e96;
+  font-size: 12px;
+}
+
 @media (max-width: 1150px) {
   .right-sidebar {
     display: none;

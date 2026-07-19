@@ -1,56 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>게시글 상세</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-</head>
-<body>
-<!-- 상단 글로벌 헤더 추가 -->
-<header class="global-header">
-    <div class="user-menu">
-        <audio id="track1" src="https://p.scdn.co/mp3-preview/0ba9d38f5d1ad30f0e31fc8ee80c1bebf0345a0c" controls="1"></audio>
-        <img src="./image/dog.jpg" alt="내 프로필">
-        <span></span>
-        <div class="dropdown-menu">
-            <a href="profile_edit.html">회원정보수정</a>
-            <a href="password_edit.html">비밀번호수정</a>
-            <a href="index.html">로그아웃</a>
-        </div>
-    </div>
-</header>
-    <div class="post-detail-container">
-        <!-- 게시글 내용 -->
-        <header class="post-detail-header" id ="post-detail-header">
-
-        </header>
-
-        <main class="post-detail-content" id = "post-detail-content">
-
-        </main>
-
-        <footer class="post-detail-footer" id = "post-detail-footer">
-
-        </footer>
-
-        <!-- 댓글 섹션 -->
-        <section class="comments-container">
-            <h3>댓글</h3>
-            <!-- 댓글 작성 폼 -->
-            <form id="comment-form" class="comment-form">
-                <textarea placeholder="댓글을 입력하세요..." required></textarea>
-                <button type="submit" class="btn-comment-submit">등록</button>
-            </form>
-
-            <!-- 댓글 목록 -->
-            <div class="comment-list" id="comment-list">
-
-
-            </div>
-        </section>
-    </div>
-    <script src="post.js"></script>
-</body>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
