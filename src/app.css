@@ -1,0 +1,74 @@
+.board-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.right-sidebar {
+  gap: 12px;
+}
+
+.right-sidebar iframe {
+  border: 0;
+}
+
+.post-meta {
+  display: flex;
+  margin: 10px 0 6px;
+}
+
+.post-date {
+  color: #868e96;
+  font-size: 13px;
+}
+
+.post-item:focus-visible {
+  outline: 3px solid #007bff;
+  outline-offset: 2px;
+}
+
+.status-message {
+  padding: 20px;
+  color: #6c757d;
+  text-align: center;
+}
+
+.status-message.error {
+  color: #dc3545;
+}
+
+.retry-button {
+  align-self: center;
+  width: auto;
+  padding: 8px 18px;
+}
+
+.scroll-sentinel {
+  height: 1px;
+}
+
+@media (max-width: 1150px) {
+  .right-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 76px 12px 12px;
+  }
+
+  .global-header {
+    padding: 0 12px;
+  }
+
+  .global-header audio {
+    display: none;
+  }
+
+  .board-container {
+    padding: 22px 18px;
+  }
+}
