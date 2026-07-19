@@ -1,50 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="animated-bg"></div>
-    <div class="signup-container">
-        <h2>회원가입</h2>
-        <form id="signup-form">
-            <!-- 프로필 사진 업로드 -->
-            <div class="profile-upload-container">
-                <label for="profile-input" class="profile-upload" id="profile-upload-label">
-                    <span class="profile-upload-icon" id="plus-icon">+</span>
-                    <img src="" alt="Profile Preview" class="profile-image-preview" id="profile-preview">
-                </label>
-                <input type="file" id="profile-input" accept="image/*">
-            </div>
-
-            <!-- 입력 필드 -->
-            <div class="input-group">
-                <label for="email">이메일</label>
-                <input type="email" id="email" name="email" required placeholder="이메일을 입력하세요">
-            </div>
-            <div class="input-group">
-                <label for="password">비밀번호</label>
-                <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">
-            </div>
-            <div class="input-group">
-                <label for="password-confirm">비밀번호 확인</label>
-                <input type="password" id="password-confirm" name="password-confirm" required placeholder="비밀번호를 다시 입력하세요">
-            </div>
-            <div class="input-group">
-                <label for="nickname">닉네임</label>
-                <input type="text" id="nickname" name="nickname" required placeholder="닉네임을 입력하세요">
-            </div>
-
-            <!-- 버튼 그룹 -->
-            <div class="button-group">
-                <button type="submit" class="btn-login" id="submit-signup-btn">회원가입</button>
-                <button type="button" class="btn-signup" id="go-login-btn" onclick="location.href='index.html'">로그인하러 가기</button>
-            </div>
-        </form>
-    </div>
-    <script src="signup.js"></script>
-</body>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
