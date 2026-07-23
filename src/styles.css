@@ -1,0 +1,150 @@
+@import url("../index.css");
+@import url("../style.css");
+
+#root {
+  width: 100%;
+}
+
+body {
+  padding: 0;
+}
+
+button {
+  font-family: inherit;
+}
+
+.auth-page {
+  align-items: center;
+  background: url("https://res.cloudinary.com/dci1eujqw/image/upload/v1616769558/Codepen/waldemar-brandt-aThdSdgx0YM-unsplash_cnq4sb.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  width: 100%;
+}
+
+.app-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  min-height: 100vh;
+  padding: 80px 20px 20px;
+  width: 100%;
+}
+
+.app-page-centered {
+  align-items: flex-start;
+}
+
+.global-header {
+  justify-content: space-between;
+}
+
+.global-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.global-audio {
+  height: 36px;
+}
+
+.right-sidebar {
+  gap: 12px;
+}
+
+.right-sidebar iframe {
+  border: 0;
+}
+
+.post-meta {
+  display: flex;
+}
+
+.status-text {
+  color: #6c757d;
+  text-align: center;
+}
+
+.post-image {
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+.write-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.btn-back {
+  background-color: #e9ecef;
+  color: #495057;
+  width: auto;
+}
+
+.write-header-spacer {
+  width: 80px;
+}
+
+.current-image-info {
+  color: #666;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.readonly-input {
+  background-color: #f1f3f5;
+  cursor: not-allowed;
+}
+
+.btn-withdraw {
+  background-color: #fff;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+}
+
+@media (max-width: 1100px) {
+  .app-page {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .right-sidebar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .container {
+    min-height: 640px;
+    max-height: none;
+    width: min(100%, 420px);
+  }
+
+  .container__form,
+  .container--signin,
+  .container--signup {
+    width: 100%;
+  }
+
+  .container__overlay {
+    display: none;
+  }
+
+  .container.right-panel-active .container--signup,
+  .container.right-panel-active .container--signin {
+    transform: none;
+  }
+
+  .container--signup {
+    opacity: 1;
+    transform: none;
+  }
+}
