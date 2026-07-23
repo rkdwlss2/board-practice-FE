@@ -19,6 +19,7 @@ function LoginPage() {
       await apiRequest("/users/login", {
         method: "POST",
         body: JSON.stringify(form),
+        redirectOnUnauthorized: false,
       });
       window.location.href = "/board.html";
     } catch (loginError) {

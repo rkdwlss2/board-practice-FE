@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import GlobalHeader from "../components/GlobalHeader.jsx";
-import { API_URL } from "../config.js";
+import { apiRequest, ApiError } from "../api/client.js";
 import profileImage from "../../image/dog.jpg";
 
 function PostDetailPage() {
@@ -13,19 +13,13 @@ function PostDetailPage() {
 
   const loadPost = useCallback(async () => {
     if (!postId) return;
-    const response = await fetch(`${API_URL}/boards/posts/${postId}`, { credentials: "include" });
-    if (!response.ok) {
-      const body = await response.json().catch(() => ({}));
-      throw new Error(body.message || "게시글을 불러오지 못했습니다.");
-    }
-    setPost(await response.json());
+    const data = await apiRequest(`/boards/posts/${postId}`);
+    setPost(data);
   }, [postId]);
 
   const loadComments = useCallback(async () => {
     if (!postId) return;
-    const response = await fetch(`${API_URL}/boards/posts/${postId}/comment`, { credentials: "include" });
-    if (!response.ok) throw new Error("댓글을 불러오지 못했습니다.");
-    const data = await response.json();
+    const data = await apiRequest(`/boards/posts/${postId}/comment`);
     setComments(Array.isArray(data) ? data : []);
   }, [postId]);
 
@@ -40,60 +34,67 @@ function PostDetailPage() {
   }, [loadComments, loadPost, postId]);
 
   const toggleLike = async () => {
-    const response = await fetch(`${API_URL}/boards/likes/${postId}`, {
-      method: post.isLiked ? "DELETE" : "POST",
-      credentials: "include",
-    });
-    if (!response.ok) return;
-    setPost((current) => ({
-      ...current,
-      isLiked: !current.isLiked,
-      likeCount: current.likeCount + (current.isLiked ? -1 : 1),
-    }));
+    try {
+      await apiRequest(`/boards/likes/${postId}`, {
+        method: post.isLiked ? "DELETE" : "POST",
+      });
+      setPost((current) => ({
+        ...current,
+        isLiked: !current.isLiked,
+        likeCount: current.likeCount + (current.isLiked ? -1 : 1),
+      }));
+    } catch (likeError) {
+      if (!(likeError instanceof ApiError && likeError.status === 401)) {
+        window.alert(likeError.message || "좋아요 처리에 실패했습니다.");
+      }
+    }
   };
 
   const deletePost = async () => {
     if (!window.confirm("게시글을 삭제하시겠습니까?")) return;
-    const response = await fetch(`${API_URL}/boards/posts/${postId}`, {
-      method: "DELETE",
-      credentials: "include",
-    });
-    if (response.ok) window.location.href = "/board.html";
+    try {
+      await apiRequest(`/boards/posts/${postId}`, {
+        method: "DELETE",
+      });
+      window.location.href = "/board.html";
+    } catch (deleteError) {
+      if (!(deleteError instanceof ApiError && deleteError.status === 401)) {
+        window.alert(deleteError.message || "게시글 삭제에 실패했습니다.");
+      }
+    }
   };
 
   const createComment = async (event) => {
     event.preventDefault();
     const content = commentContent.trim();
     if (!content) return;
-    const response = await fetch(`${API_URL}/boards/posts/${postId}/comment`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ content }),
-    });
-    if (!response.ok) return;
-    setCommentContent("");
-    await Promise.all([loadComments(), loadPost()]);
+    try {
+      await apiRequest(`/boards/posts/${postId}/comment`, {
+        method: "POST",
+        body: JSON.stringify({ content }),
+      });
+      setCommentContent("");
+      await Promise.all([loadComments(), loadPost()]);
+    } catch (commentError) {
+      if (!(commentError instanceof ApiError && commentError.status === 401)) {
+        window.alert(commentError.message || "댓글 등록에 실패했습니다.");
+      }
+    }
   };
 
   const deleteComment = async (commentId) => {
     if (!window.confirm("댓글을 삭제하시겠습니까?")) return;
-    const response = await fetch(`${API_URL}/boards/posts/comment/${commentId}`, {
-      method: "DELETE",
-      credentials: "include",
-    });
-    if (response.status === 401) {
-      window.alert("로그인이 필요합니다.");
-      window.location.href = "/index.html";
-      return;
+    try {
+      await apiRequest(`/boards/posts/comment/${commentId}`, {
+        method: "DELETE",
+      });
+      setComments((current) => current.filter((comment) => comment.commentId !== commentId));
+      setPost((current) => ({ ...current, commentCount: Math.max(0, current.commentCount - 1) }));
+    } catch (deleteError) {
+      if (!(deleteError instanceof ApiError && deleteError.status === 401)) {
+        window.alert(deleteError.message || "댓글 삭제에 실패했습니다.");
+      }
     }
-    if (!response.ok) {
-      const body = await response.json().catch(() => ({}));
-      window.alert(body.message || "삭제에 실패했습니다.");
-      return;
-    }
-    setComments((current) => current.filter((comment) => comment.commentId !== commentId));
-    setPost((current) => ({ ...current, commentCount: Math.max(0, current.commentCount - 1) }));
   };
 
   if (isLoading) return <><GlobalHeader /><p className="status-message page-status">게시글을 불러오는 중...</p></>;

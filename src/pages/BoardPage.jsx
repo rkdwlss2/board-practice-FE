@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import GlobalHeader from "../components/GlobalHeader.jsx";
 import PostItem from "../components/PostItem.jsx";
-import { API_URL, PAGE_SIZE } from "../config.js";
+import { apiRequest } from "../api/client.js";
+import { PAGE_SIZE } from "../config.js";
 
 const videos = ["tZooW6PritE", "oWSNOrBbOIU", "S7chAOXT0Y8", "mOk4ghoRtDo", "j4LlqGxOr2E"];
 
@@ -20,14 +21,7 @@ function BoardPage() {
     setError("");
 
     try {
-      const response = await fetch(`${API_URL}/boards/posts?page=${page}&size=${PAGE_SIZE}`, {
-        credentials: "include",
-      });
-      if (!response.ok) {
-        const body = await response.json().catch(() => ({}));
-        throw new Error(body.message || "게시글을 불러오지 못했습니다.");
-      }
-      const data = await response.json();
+      const data = await apiRequest(`/boards/posts?page=${page}&size=${PAGE_SIZE}`);
       const nextPosts = Array.isArray(data.content) ? data.content : [];
       setPosts((current) => [...current, ...nextPosts]);
       setHasMore(data.last === false || (data.last == null && nextPosts.length === PAGE_SIZE));

@@ -36,6 +36,7 @@ function SignupPage() {
       await apiRequest("/users/signup", {
         method: "POST",
         body: JSON.stringify({ email: form.email, password: form.password, nickname: form.nickname }),
+        redirectOnUnauthorized: false,
       });
       window.location.href = "/index.html";
     } catch (signupError) {

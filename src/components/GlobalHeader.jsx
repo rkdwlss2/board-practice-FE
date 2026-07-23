@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { apiRequest, clearClientAuthState } from "../api/client.js";
 import profileImage from "../../image/dog.jpg";
 
 function GlobalHeader({ isDark = false, onToggleDark }) {
@@ -12,6 +13,24 @@ function GlobalHeader({ isDark = false, onToggleDark }) {
     document.addEventListener("click", closeMenu);
     return () => document.removeEventListener("click", closeMenu);
   }, []);
+
+  const logout = async (event) => {
+    event.preventDefault();
+
+    try {
+      await apiRequest("/users/logout", {
+        method: "POST",
+        redirectOnUnauthorized: false,
+      });
+    } catch (logoutError) {
+      if (logoutError.status !== 401) {
+        window.alert(logoutError.message || "로그아웃 요청에 실패했습니다.");
+      }
+    } finally {
+      clearClientAuthState();
+      window.location.href = "/index.html";
+    }
+  };
 
   return (
     <header className="global-header">
@@ -36,7 +55,7 @@ function GlobalHeader({ isDark = false, onToggleDark }) {
         <div className={`dropdown-menu${isMenuOpen ? " show" : ""}`}>
           <a href="/profile_edit.html">회원정보수정</a>
           <a href="/password_edit.html">비밀번호수정</a>
-          <a href="/index.html">로그아웃</a>
+          <a href="/index.html" onClick={logout}>로그아웃</a>
         </div>
       </div>
     </header>
