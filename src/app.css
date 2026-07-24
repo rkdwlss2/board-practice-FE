@@ -59,6 +59,46 @@
   text-align: center;
 }
 
+.page-shell {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.write-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.btn-back {
+  width: auto;
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.write-header-spacer {
+  width: 80px;
+}
+
+.current-image-info {
+  margin-top: 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+.readonly-input {
+  background-color: #f1f3f5;
+  cursor: not-allowed;
+}
+
+.btn-withdraw {
+  border: 1px solid #dc3545;
+  background-color: #fff;
+  color: #dc3545;
+}
+
 .comment-timestamp {
   color: #868e96;
   font-size: 12px;
